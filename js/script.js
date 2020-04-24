@@ -14,28 +14,25 @@
 
   fetch(API)
       .then(checkStatus)
-      .then(res => res.json())
-      .then(generateEmployeeData)
+      .then(response => response.json())
+      .then(data =>generateEmployeeData(data.results))
       .catch(error => console.log('Looks like there is a problem', error))
       
   
 
   //Helper Function
 
-  function generateEmployeeData(EmployData){
+  function generateEmployeeData(employData){
+  
       let employeeHTML= '';
     employData.forEach((employee, index) => {
-        let name = employee.name;
-        let email = employee.email;
-        let city = employee.location.city;
-        let picture = employee.picture;
-      employeeHTML = `
+      employeeHTML += `
       <div class='card' data-index="${index}">
-      <img class='photo' src='${picture}>
+      <img class='photo' src='${employee.picture}>
       <div class="main-info">
-      <h2 class="name">${name.first} ${name.last}</h2>
-      <p class="email">${email}</p>
-      <p class="address">${city}</p>
+      <h2 class="name">${employee.name.first} ${employee.name.last}</h2>
+      <p class="email">${employee.email}</p>
+      <p class="address">${employee.city}</p>
       </div>
      </div>
      `
