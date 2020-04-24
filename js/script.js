@@ -23,12 +23,12 @@
   //Helper Function
 
   function generateEmployeeData(employData){
-  
+    console.dir(employData);
       let employeeHTML= '';
     employData.forEach((employee, index) => {
       employeeHTML += `
       <div class='card' data-index="${index}">
-      <img class='photo' src='${employee.picture}>
+      <img class='photo' src='${employee.picture.large}>
       <div class="main-info">
       <h2 class="name">${employee.name.first} ${employee.name.last}</h2>
       <p class="email">${employee.email}</p>
