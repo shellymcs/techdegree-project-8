@@ -1,1 +1,88 @@
+body{
+    background-color: rgb(240, 234, 234);
+}
 
+.main-heading{
+    font-size: 1.2em;
+color: rgb(150, 146, 146);
+}
+
+p{
+    padding-top: 0;
+    margin: 5px;
+    color: rgb(150, 146, 146);
+}
+
+h2{
+    margin-bottom: 5px;
+}
+
+.grid-container{
+display: grid;
+
+}
+
+.card{
+    background-color: white;
+    margin: 8px;
+    display: inline-flex;
+    height:150px;
+    border: 2px solid rgb(199, 197, 197);
+    border-radius: 5px;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.photo{
+    max-width: 30%;
+    margin: auto 10px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.main-info{
+    margin-right: 10px;
+    font-size: .9em;
+    margin-top: 15px;
+}
+
+
+/*------MEDIA QUERIES_______*/
+
+@media (min-width: 768px){
+    .grid-container{
+        grid-template-columns: 1fr 1fr;
+    }
+    .main-heading{
+        font-size: 1.6em;
+    }
+}
+
+
+@media (min-width: 1200px){
+    .grid-container{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/*------MODAL_______*/
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(124, 121, 121, 0.4)
+}
+
+.hidden{
+    display: none;
+}
+
+.modal-close{
+    cursor: pointer;
+}
