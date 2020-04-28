@@ -70,19 +70,65 @@ display: grid;
 
 /*------MODAL_______*/
 
-.overlay{
+.modal-container {
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(124, 121, 121, 0.4)
-}
-
-.hidden{
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
     display: none;
-}
+  }
+  
+  .modal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 320px;
+    height: 500px;
+    margin: auto;
+    padding-bottom: 15px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0.25em;
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    transition: .4s ease-out;
+  }
+  .modal-info-container{ 
+      text-align: center;
+  }
 
-.modal-close{
-    cursor: pointer;
-}
+  .modal-close{
+      cursor: pointer;
+      text-align: right;
+      font-size: x-large;
+      margin-right: 10px;
+  }
+  
+  .modal-img {
+    width: 150px;
+    margin-top: 35px;
+    border-radius: 50%;
+  }
+  
+  .modal-name {
+    margin-bottom: 5px;
+  }
+  
+  .modal-text {
+    color: rgba(50, 50, 50, 0.7);
+    margin: 10px;
+  }
+  
+  .modal hr {
+    width: 75%;
+    margin: 25px auto 30px;
+    border-color: rgba(200, 200, 200, 0.2);
+  }
+
+  .arrows{
+      font-size: 2.5em;
+      color: red;
+      cursor: pointer;
+  }

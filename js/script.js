@@ -38,8 +38,12 @@
      </div>
      `
     });
-     mainGrid.innerHTML = employeeHTML;
-
+    mainGrid.innerHTML = employeeHTML;
+    mainGrid.querySelectorAll('.card').forEach((card, index) => {
+      card.addEventListener('click', () => {
+        modal(employData[index]);
+      });
+    });
   };
 
   function checkStatus(response){
@@ -49,36 +53,44 @@
 
 //=====Modal========
 
-const overlay = document.querySelector('.overlay');
-const modalCard = document.querySelector('.modal-card');
-const modalClose  = document.querySelector('.modal-close');
-const modal  = document.querySelector('.modal-container');
 
-card.addEventListener('click', e =>{
-  overlay.classList.remove("hidden");
-   let modalHTML= '';
-  employData.forEach((employee, index) => {
-    modalHTML += `
-    <div class='modalCard' data-index="${index}">
-    <img class='photo' src='${employee.picture.large}'>
-    <div class="modal-info">
-    <h2 class="name">${employee.name.first} ${employee.name.last}</h2>
-    <p class="email">${employee.email}</p>
-    <p class="address">${employee.location.state}</p>
+
+generateEmployeeData(employData);
+
+const modal = employee => {
+  const modalContainer = document.querySelector('.modal-container');
+  const dob = new Date(Date.parse(employee.dob.date)).toLocaleDateString(navigator.language); // Formats date depending on users locale.
+  
+  modalContainer.innerHTML = `
+    <div class="modal">
+      <div class="modal-info-container">
+         <p class="modal-close">X</p>
+        <img class="modal-img" src="${employee.picture.large}" alt="${employee.name.first}'s profile picture">
+        <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
+        <p class="modal-text">${employee.email}</p>
+        <p class="modal-text cap">${employee.location.city}</p><hr>
+        <p class="modal-text">${employee.phone}</p>
+        <p class="modal-text cap">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.state} ${employee.location.postcode}</p>
+        <p class="modal-text">Birthday: ${dob}</p>
+        <p class="arrows"><span class="arrow-forward">&larr;</span>&nbsp;&nbsp;&nbsp;       
+        &nbsp;&nbsp;&nbsp; <span class="arrow-forward">&rarr;</span></p> 
+      </div>
     </div>
-    <div class="extraInfo">
-    <p class="phone">${employee.phone}</p>
-    <p class="full-address">${employee.location.street}, ${employee.location.city}, ${employee.location.postcode}</p>
-    <p class="dob">Birthday: ${employee.dob.date}</p>
-    
-    </div>
-   </div>
-   `
+  `;
+
+  modalContainer.style.display = 'block';
+  modalContainer.querySelector('.modal-close').addEventListener('click', () => {
+    modalContainer.style.display  ="none";
   });
+ 
+  modalContainer.addEventListener('click', (e => {
+    if(e.target === modalContainer.querySelector('.arrow-forward')){
+    modal(employee++);
+  }else if (e.target === modalContainer.querySelector('.arrow-back')){
+    modal(employee--);
+  } else {
+    return;
+  }
+  }));
 
-   modal.innerHTML = modalHTML;
-});
-
-modalClose.addEventListener('click', e =>{
-  overlay.classList.add("hidden");
-})
+};
