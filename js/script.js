@@ -45,14 +45,12 @@
       });
     });
     $(document).ready( function(){
-      
-      $('.search').on('keyup', function(){
-          let search = $('.search').val().toLowerCase();
+       $document.querySelector('.search').on('keyup', function(){
+          let search = $document.querySelector('.search').val().toLowerCase();
           for (var i =0; i< employData.length; i++) {
               let searchVal = employeeHTML;
-          
           if (searchVal.toLowerCase().indexOf(search) > -1){
-          employData[i].style.display ="";
+          card(employData[i]);
       }else {
           employData[i].style.display = "none";
       }
