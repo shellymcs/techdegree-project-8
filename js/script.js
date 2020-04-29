@@ -55,10 +55,10 @@
 
 $(document).ready( function(){
   $('.search').on('keyup', function(){
-    let li = document.querySelector('.name');
+    let li = document.getElementsByTagName('h2');
      let search = $('.search').val().toLowerCase();
      for (var i =0; i< li.length; i++) {
-         let searchVal = li.textContent;
+         let searchVal = li[i].getElementsByClassName('.name').textContent;
      if (searchVal.toLowerCase().indexOf(search) > -1){
      li[i].style.display ="";
  }else {
