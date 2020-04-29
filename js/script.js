@@ -42,27 +42,32 @@
     mainGrid.querySelectorAll('.card').forEach((card, index) => {
       card.addEventListener('click', () => {
         modal(employData[index]);
+        
       });
     });
-    $(document).ready( function(){
-       $document.querySelector('.search').on('keyup', function(){
-          let search = $document.querySelector('.search').val().toLowerCase();
-          for (var i =0; i< employData.length; i++) {
-              let searchVal = employeeHTML;
-          if (searchVal.toLowerCase().indexOf(search) > -1){
-          card(employData[i]);
-      }else {
-          employData[i].style.display = "none";
-      }
-          }
-      });
-      });
+    
   };
 
   function checkStatus(response){
       if (response.ok){return Promise.resolve(response);
   }else{return Promise.reject(newError(response.statusText));
 }}
+
+$(document).ready( function(){
+  $('.search').on('keyup', function(){
+    let li = document.createElement('li');
+    card.getElementsByClassName('.name').appendChild('li');
+     let search = $('.search').val().toLowerCase();
+     for (var i =0; i< li.length; i++) {
+         let searchVal = document.querySelector('.name').textContent;
+     if (searchVal.toLowerCase().indexOf(search) > -1){
+     li[i].style.display ="";
+ }else {
+     li[i].style.display = "none";
+ }
+     }
+ });
+ });
 
 //=====Modal========
 
@@ -85,7 +90,7 @@ const modal = employee => {
         <p class="modal-text">${employee.phone}</p>
         <p class="modal-text cap">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.state} ${employee.location.postcode}</p>
         <p class="modal-text">Birthday: ${dob}</p>
-        <p class="arrows"><span class="arrow-forward">&larr;</span>&nbsp;&nbsp;&nbsp;       
+        <p class="arrows"><span class="arrow-back">&larr;</span>&nbsp;&nbsp;&nbsp;       
         &nbsp;&nbsp;&nbsp; <span class="arrow-forward">&rarr;</span></p> 
       </div>
     </div>
@@ -97,10 +102,11 @@ const modal = employee => {
   });
  
   modalContainer.addEventListener('click', (e => {
+    let selectedEmployee = 0;
     if(e.target === modalContainer.querySelector('.arrow-forward')){
-    modal(employee++);
+    modal(selectedEmployee++);
   }else if (e.target === modalContainer.querySelector('.arrow-back')){
-    modal(employee--);
+    modal(selectedEmployee--);
   } else {
     return;
   }
