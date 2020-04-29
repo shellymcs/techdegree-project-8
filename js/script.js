@@ -42,7 +42,7 @@
     mainGrid.querySelectorAll('.card').forEach((card, index) => {
       card.addEventListener('click', () => {
         modal(employData[index]);
-        
+
       });
     });
     
@@ -55,11 +55,10 @@
 
 $(document).ready( function(){
   $('.search').on('keyup', function(){
-    let li = document.createElement('li');
-    card.getElementsByClassName('.name').appendChild('li');
+    let li = document.querySelector('.name');
      let search = $('.search').val().toLowerCase();
      for (var i =0; i< li.length; i++) {
-         let searchVal = document.querySelector('.name').textContent;
+         let searchVal = li.textContent;
      if (searchVal.toLowerCase().indexOf(search) > -1){
      li[i].style.display ="";
  }else {
