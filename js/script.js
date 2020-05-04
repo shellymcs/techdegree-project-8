@@ -42,7 +42,7 @@
     mainGrid.querySelectorAll('.card').forEach((card, index) => {
       card.addEventListener('click', () => {
         modal(employData[index]);
-
+        selectedEmployee = index;
       });
     });
     
@@ -53,26 +53,32 @@
   }else{return Promise.reject(newError(response.statusText));
 }}
 
-$(document).ready( function(){
-  $('.search').on('keyup', function(){
-    let li = document.getElementsByTagName('h2');
-     let search = $('.search').val().toLowerCase();
-     for (var i =0; i< li.length; i++) {
-         let searchVal = li[i].getElementsByClassName('name').textContent;
-     if (searchVal.toLowerCase().indexOf(search) > -1){
+function searchNames() {
+    let input, filter, ul, li, a, i, txtValue;
+    input = document.getElementsByClassName('search');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.ul.getElementsByTagName('li');
+    li.push(card.getElementsByTagName('h2'));
+    
+     for ( i =0; i< li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = li.textContent || li.innerText;
+     if (txtValue.toUpperCase().indexOf(filter) > -1){
      li[i].style.display ="";
  }else {
      li[i].style.display = "none";
  }
      }
- });
- });
+ };
+
 
 //=====Modal========
 
 
 
 generateEmployeeData(employData);
+
 
 const modal = employee => {
   const modalContainer = document.querySelector('.modal-container');
@@ -101,11 +107,13 @@ const modal = employee => {
   });
  
   modalContainer.addEventListener('click', (e => {
+
     let selectedEmployee = 0;
+    employData.push(selectedEmployee)
     if(e.target === modalContainer.querySelector('.arrow-forward')){
-    modal(selectedEmployee++);
+    modal(employData[selectedEmployee++]);
   }else if (e.target === modalContainer.querySelector('.arrow-back')){
-    modal(selectedEmployee--);
+    modal(employData[selectedEmployee--]);
   } else {
     return;
   }
