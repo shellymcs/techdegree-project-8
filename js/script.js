@@ -45,7 +45,7 @@
         selectedEmployee = index;
       });
     });
-    
+    searchNames(employData);
   };
 
   function checkStatus(response){
@@ -70,7 +70,7 @@ function searchNames() {
      li[i].style.display = "none";
  }
      }
- };
+ }
 
  searchNames();
 
