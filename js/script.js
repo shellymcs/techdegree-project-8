@@ -45,7 +45,7 @@
         selectedEmployee = index;
       });
     });
-    searchNames(employData);
+  
   };
 
   function checkStatus(response){
@@ -54,25 +54,21 @@
 }}
 
 function searchNames() {
-    let input, filter, ul, li, a, i, txtValue;
-    input = document.getElementsByClassName('search');
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.ul.getElementsByTagName('li');
-    li.push(card.getElementsByTagName('h2'));
+    const input = document.querySelector('search');
+   let filter = input.value.toUpperCase();
+   const cards = document.querySelectorAll('.card');
+   const names = document.querySelectorAll('.name');
     
-     for ( i =0; i< li.length; i++) {
-      a = li[i].getElementsByTagName("a")[0];
-      txtValue = li.textContent || li.innerText;
-     if (txtValue.toUpperCase().indexOf(filter) > -1){
-     li[i].style.display ="";
- }else {
-     li[i].style.display = "none";
- }
-     }
- }
+   for (i = 0; i < names.length; i++) {
+    let txtValue = names[i].textContent;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      cards[i].style.display = "";
+    } else {
+      cards[i].style.display = "none";
+    }
+  }
+}
 
- searchNames();
 
 
 //=====Modal========
