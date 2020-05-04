@@ -72,6 +72,8 @@ function searchNames() {
      }
  };
 
+ searchNames();
+
 
 //=====Modal========
 
