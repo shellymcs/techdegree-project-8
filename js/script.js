@@ -41,7 +41,7 @@
     mainGrid.innerHTML = employeeHTML;
     mainGrid.querySelectorAll('.card').forEach((card, index) => {
       card.addEventListener('click', () => {
-        modal(employData[index]);
+        modal(employData, employData[index], index);
         selectedEmployee = index;
       });
     });
@@ -78,7 +78,7 @@ function searchNames() {
 generateEmployeeData(employData);
 
 
-const modal = employee => {
+const modal = (employData, employee, index) => {
   const modalContainer = document.querySelector('.modal-container');
   const dob = new Date(Date.parse(employee.dob.date)).toLocaleDateString(navigator.language); // Formats date depending on users locale.
   
@@ -105,13 +105,10 @@ const modal = employee => {
   });
  
   modalContainer.addEventListener('click', (e => {
-
-    let selectedEmployee = 0;
-    employData.push(selectedEmployee)
     if(e.target === modalContainer.querySelector('.arrow-forward')){
-    modal(employData[selectedEmployee++]);
+      modal(employData, employData[index++], index++);
   }else if (e.target === modalContainer.querySelector('.arrow-back')){
-    modal(employData[selectedEmployee--]);
+    modal(employData, employData[index--], index--);
   } else {
     return;
   }
