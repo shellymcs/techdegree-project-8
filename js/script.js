@@ -54,7 +54,7 @@
 }}
 
 function searchNames() {
-    const input = document.querySelector('search');
+    const input = document.querySelector('.search');
    let filter = input.value.toUpperCase();
    const cards = document.querySelectorAll('.card');
    const names = document.querySelectorAll('.name');
