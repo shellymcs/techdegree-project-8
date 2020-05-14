@@ -106,9 +106,9 @@ const modal = (employData, employee, index) => {
  
   modalContainer.addEventListener('click', (e => {
     if(e.target === modalContainer.querySelector('.arrow-forward')){
-      modal(employData, employData[index++], index++);
+      modal(employData, employData[index+1], index+1);
   }else if (e.target === modalContainer.querySelector('.arrow-back')){
-    modal(employData, employData[index--], index--);
+    modal(employData, employData[index-1], index-1);
   } else {
     return;
   }
